@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,38 +11,63 @@
             font-family: 'Inter', sans-serif;
         }
         .hero-bg {
-            background-color: #111827;
-            background-image: radial-gradient(circle at 1px 1px, #374151 1px, transparent 0);
-            background-size: 20px 20px;
+            background-image: linear-gradient(rgba(3, 7, 18, 0.8), rgba(3, 7, 18, 0.8)), url('https://placehold.co/1600x900/030712/1f2937?text=VibeHub+Space');
+            background-size: cover;
+            background-position: center;
         }
         .glow-effect {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 40%;
-            height: 40%;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, rgba(99, 102, 241, 0) 70%);
-            filter: blur(100px);
+            width: 50%;
+            height: 50%;
+            background: radial-gradient(circle, rgba(249, 115, 22, 0.2) 0%, rgba(249, 115, 22, 0) 70%);
+            filter: blur(120px);
             z-index: 0;
         }
     </style>
 </head>
-<body class="bg-gray-900 text-white">
+<body class="bg-gray-950 text-white">
 
     <!-- Header -->
-    <header class="fixed w-full bg-gray-900/80 backdrop-blur-sm z-50">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold tracking-tighter">VibeHub</a>
-            <nav class="hidden md:flex items-center space-x-8">
-                <a href="#features" class="hover:text-indigo-400 transition-colors">Features</a>
-                <a href="#pricing" class="hover:text-indigo-400 transition-colors">Pricing</a>
-                <a href="#community" class="hover:text-indigo-400 transition-colors">Community</a>
-            </nav>
-            <div class="flex items-center space-x-4">
-                 <a href="#tour" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-5 py-2 rounded-lg transition-transform transform hover:scale-105">
-                    Book a Tour
-                </a>
+    <header class="fixed w-full bg-gray-950/80 backdrop-blur-sm z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold tracking-tighter text-white">VibeHub</a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="hover:text-orange-400 transition-colors">Features</a>
+                    <a href="#products" class="hover:text-orange-400 transition-colors">Spaces</a>
+                    <a href="#community" class="hover:text-orange-400 transition-colors">Community</a>
+                </nav>
+
+                <div class="flex items-center space-x-4">
+                    <a href="#tour" class="hidden sm:block bg-orange-500 hover:bg-orange-600 text-white font-semibold px-5 py-2 rounded-lg transition-all transform hover:scale-105">
+                        Book a Tour
+                    </a>
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700">
+                        <svg id="menu-open-icon" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                        <svg id="menu-close-icon" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4">
+                <nav class="flex flex-col space-y-4">
+                    <a href="#features" class="hover:text-orange-400 transition-colors block px-3 py-2 rounded-md text-base font-medium">Features</a>
+                    <a href="#products" class="hover:text-orange-400 transition-colors block px-3 py-2 rounded-md text-base font-medium">Spaces</a>
+                    <a href="#community" class="hover:text-orange-400 transition-colors block px-3 py-2 rounded-md text-base font-medium">Community</a>
+                    <a href="#tour" class="sm:hidden mt-2 w-full text-center bg-orange-500 hover:bg-orange-600 text-white font-semibold px-5 py-3 rounded-lg transition-all">
+                        Book a Tour
+                    </a>
+                </nav>
             </div>
         </div>
     </header>
@@ -52,16 +77,16 @@
         <div class="glow-effect"></div>
         <div class="container mx-auto px-6 text-center relative z-10">
             <h1 class="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter mb-4">
-                Where Your Best Work <span class="text-indigo-400">Happens.</span>
+                Where Your Best Work <span class="text-orange-400">Happens.</span>
             </h1>
             <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">
                 Ditch the coffee shop chaos. VibeHub is the aesthetic, high-tech coworking space designed for creators, freelancers, and startups to connect and innovate.
             </p>
-            <div class="flex justify-center items-center space-x-4">
-                <a href="#tour" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-8 py-4 rounded-lg transition-transform transform hover:scale-105 text-lg">
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="#tour" class="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 py-4 rounded-lg transition-transform transform hover:scale-105 text-lg">
                     Book a Tour
                 </a>
-                <a href="#portal" class="bg-gray-700 hover:bg-gray-600 text-white font-bold px-8 py-4 rounded-lg transition-transform transform hover:scale-105 text-lg">
+                <a href="#portal" class="w-full sm:w-auto bg-gray-700 hover:bg-gray-600 text-white font-bold px-8 py-4 rounded-lg transition-transform transform hover:scale-105 text-lg">
                     Community Portal
                 </a>
             </div>
@@ -69,40 +94,26 @@
     </main>
 
     <!-- Features Section -->
-    <section id="features" class="py-20 bg-gray-800">
+    <section id="features" class="py-20 bg-gray-900">
         <div class="container mx-auto px-6">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold">Not Your Average Office</h2>
                 <p class="text-gray-400 mt-2">Everything you need to level up your grind.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Feature 1 -->
-                <div class="bg-gray-900 p-8 rounded-xl border border-gray-700 hover:border-indigo-500 transition-all duration-300 transform hover:-translate-y-2">
-                    <div class="text-indigo-400 mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                    </div>
+                <!-- Feature Cards -->
+                <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 hover:border-orange-500 transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="text-orange-400 mb-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg></div>
                     <h3 class="text-xl font-bold mb-2">Blazing-Fast WiFi</h3>
                     <p class="text-gray-400">Gigabit fiber internet so your workflow is never interrupted. Upload, download, and stream without a single lag spike.</p>
                 </div>
-                <!-- Feature 2 -->
-                <div class="bg-gray-900 p-8 rounded-xl border border-gray-700 hover:border-indigo-500 transition-all duration-300 transform hover:-translate-y-2">
-                    <div class="text-indigo-400 mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg>
-                    </div>
+                <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 hover:border-orange-500 transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="text-orange-400 mb-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg></div>
                     <h3 class="text-xl font-bold mb-2">Creator Community</h3>
                     <p class="text-gray-400">Connect with a curated community of designers, developers, and entrepreneurs. Your next collaborator is just a desk away.</p>
                 </div>
-                <!-- Feature 3 -->
-                <div class="bg-gray-900 p-8 rounded-xl border border-gray-700 hover:border-indigo-500 transition-all duration-300 transform hover:-translate-y-2">
-                    <div class="text-indigo-400 mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                        </svg>
-                    </div>
+                <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 hover:border-orange-500 transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="text-orange-400 mb-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg></div>
                     <h3 class="text-xl font-bold mb-2">Inspiring Spaces</h3>
                     <p class="text-gray-400">From sunlit open desks to soundproof podcast studios and focus rooms, find the perfect environment for your tasks.</p>
                 </div>
@@ -110,66 +121,85 @@
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section id="pricing" class="py-20 bg-gray-900">
+    <!-- Products/Spaces Section -->
+    <section id="products" class="py-20 bg-gray-950">
         <div class="container mx-auto px-6">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold">Find Your Fit</h2>
-                <p class="text-gray-400 mt-2">Simple, flexible plans. No hidden fees.</p>
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold">Find Your Perfect Space</h2>
+                <p class="text-gray-400 mt-2">Flexible solutions for individuals and teams of all sizes.</p>
             </div>
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <!-- Plan 1: Hot Desk -->
-                <div class="bg-gray-800 p-8 rounded-xl border-2 border-gray-700 flex flex-col">
-                    <h3 class="text-2xl font-bold mb-2">Hot Desk</h3>
-                    <p class="text-4xl font-black mb-4">$250<span class="text-lg font-medium text-gray-400">/mo</span></p>
-                    <p class="text-gray-400 mb-6 flex-grow">Access any available desk in the common area. Perfect for freelancers on the move.</p>
-                    <ul class="space-y-3 text-gray-300 mb-8">
-                        <li class="flex items-center"><svg class="w-5 h-5 text-indigo-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Flexible Seating</li>
-                        <li class="flex items-center"><svg class="w-5 h-5 text-indigo-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>High-Speed WiFi</li>
-                        <li class="flex items-center"><svg class="w-5 h-5 text-indigo-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Community Access</li>
-                    </ul>
-                    <a href="#tour" class="w-full text-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 rounded-lg transition-colors">Choose Plan</a>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Product Card: Private Suites -->
+                <div class="bg-gray-900 rounded-xl overflow-hidden border border-gray-700 flex flex-col group">
+                    <img src="https://placehold.co/600x400/111827/f97316?text=Private+Suite" alt="Private Suite" class="h-56 w-full object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-2xl font-bold mb-2">Private Suites</h3>
+                        <p class="text-gray-400 mb-4 flex-grow">A fully-enclosed, lockable office for your team. Ultimate privacy and customization. Perfect for startups and established companies.</p>
+                        <p class="text-2xl font-bold text-orange-400 mb-4">From $1200/mo</p>
+                        <a href="#tour" class="mt-auto w-full text-center bg-gray-700 hover:bg-orange-500 text-white font-bold py-3 rounded-lg transition-colors">Book a Tour</a>
+                    </div>
                 </div>
-                <!-- Plan 2: Dedicated Desk -->
-                <div class="bg-indigo-900/30 p-8 rounded-xl border-2 border-indigo-500 flex flex-col relative overflow-hidden">
-                    <span class="absolute top-0 right-0 bg-indigo-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">Most Popular</span>
-                    <h3 class="text-2xl font-bold mb-2">Dedicated Desk</h3>
-                    <p class="text-4xl font-black mb-4">$450<span class="text-lg font-medium text-gray-400">/mo</span></p>
-                    <p class="text-gray-300 mb-6 flex-grow">Your own personal desk. Set up your station and leave it. It's all yours.</p>
-                    <ul class="space-y-3 text-gray-200 mb-8">
-                        <li class="flex items-center"><svg class="w-5 h-5 text-indigo-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Everything in Hot Desk</li>
-                        <li class="flex items-center"><svg class="w-5 h-5 text-indigo-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>24/7 Access</li>
-                        <li class="flex items-center"><svg class="w-5 h-5 text-indigo-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Mail & Package Handling</li>
-                        <li class="flex items-center"><svg class="w-5 h-5 text-indigo-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Lockable Storage</li>
-                    </ul>
-                    <a href="#tour" class="w-full text-center bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-lg transition-colors">Choose Plan</a>
+
+                <!-- Product Card: Dedicated Desk -->
+                <div class="bg-gray-900 rounded-xl overflow-hidden border border-gray-700 flex flex-col group">
+                    <img src="https://placehold.co/600x400/111827/f97316?text=Dedicated+Desk" alt="Dedicated Desk" class="h-56 w-full object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-2xl font-bold mb-2">Dedicated Desk</h3>
+                        <p class="text-gray-400 mb-4 flex-grow">Your own personal desk in our shared space. Set up your monitor and leave your gear securely. Your spot is always waiting.</p>
+                         <p class="text-2xl font-bold text-orange-400 mb-4">From $450/mo</p>
+                        <a href="#tour" class="mt-auto w-full text-center bg-gray-700 hover:bg-orange-500 text-white font-bold py-3 rounded-lg transition-colors">Book a Tour</a>
+                    </div>
                 </div>
-                <!-- Plan 3: Private Office -->
-                <div class="bg-gray-800 p-8 rounded-xl border-2 border-gray-700 flex flex-col">
-                    <h3 class="text-2xl font-bold mb-2">Private Office</h3>
-                    <p class="text-4xl font-black mb-4">$1200<span class="text-lg font-medium text-gray-400">/mo</span></p>
-                    <p class="text-gray-400 mb-6 flex-grow">A fully-enclosed, lockable office for you and your team. Ultimate privacy and focus.</p>
-                    <ul class="space-y-3 text-gray-300 mb-8">
-                        <li class="flex items-center"><svg class="w-5 h-5 text-indigo-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Everything in Dedicated</li>
-                        <li class="flex items-center"><svg class="w-5 h-5 text-indigo-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>For Teams of 2-6</li>
-                        <li class="flex items-center"><svg class="w-5 h-5 text-indigo-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Company Signage</li>
-                    </ul>
-                    <a href="#tour" class="w-full text-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 rounded-lg transition-colors">Choose Plan</a>
+
+                <!-- Product Card: Hot Desk -->
+                <div class="bg-gray-900 rounded-xl overflow-hidden border border-gray-700 flex flex-col group">
+                    <img src="https://placehold.co/600x400/111827/f97316?text=Hot+Desk" alt="Hot Desk" class="h-56 w-full object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-2xl font-bold mb-2">Hot Desk</h3>
+                        <p class="text-gray-400 mb-4 flex-grow">Grab any open seat in our common areas. Maximum flexibility for freelancers and remote workers on the go.</p>
+                         <p class="text-2xl font-bold text-orange-400 mb-4">From $250/mo</p>
+                        <a href="#tour" class="mt-auto w-full text-center bg-gray-700 hover:bg-orange-500 text-white font-bold py-3 rounded-lg transition-colors">Book a Tour</a>
+                    </div>
                 </div>
+                
+                <!-- Product Card: Weekly Pass -->
+                <div class="bg-gray-900 rounded-xl overflow-hidden border border-gray-700 flex flex-col group md:col-span-2 lg:col-span-1">
+                    <img src="https://placehold.co/600x400/111827/f97316?text=Weekly+Pass" alt="Weekly Pass" class="h-56 w-full object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-2xl font-bold mb-2">Weekly Pass</h3>
+                        <p class="text-gray-400 mb-4 flex-grow">Need a space for a short-term project? Get access to our hot desks and amenities for a full week.</p>
+                         <p class="text-2xl font-bold text-orange-400 mb-4">From $100/wk</p>
+                        <a href="#tour" class="mt-auto w-full text-center bg-gray-700 hover:bg-orange-500 text-white font-bold py-3 rounded-lg transition-colors">Get Pass</a>
+                    </div>
+                </div>
+
+                <!-- Product Card: Day Pass -->
+                <div class="bg-gray-900 rounded-xl overflow-hidden border border-gray-700 flex flex-col group">
+                    <img src="https://placehold.co/600x400/111827/f97316?text=Day+Pass" alt="Day Pass" class="h-56 w-full object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-2xl font-bold mb-2">Day Pass</h3>
+                        <p class="text-gray-400 mb-4 flex-grow">Drop in for the day. Perfect for a change of scenery or when you need a productive burst of focus.</p>
+                         <p class="text-2xl font-bold text-orange-400 mb-4">From $35/day</p>
+                        <a href="#tour" class="mt-auto w-full text-center bg-gray-700 hover:bg-orange-500 text-white font-bold py-3 rounded-lg transition-colors">Get Pass</a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
+
     <!-- Community Portal Section -->
-    <section id="portal" class="py-20 bg-gray-800">
+    <section id="community" class="py-20 bg-gray-900">
         <div class="container mx-auto px-6">
-            <div class="bg-gray-900 rounded-2xl p-10 md:p-16 flex flex-col md:flex-row items-center justify-between border border-gray-700">
+            <div class="bg-gray-800 rounded-2xl p-10 md:p-16 flex flex-col md:flex-row items-center justify-between border border-gray-700">
                 <div class="md:w-1/2 mb-8 md:mb-0 text-center md:text-left">
                     <h2 class="text-3xl md:text-4xl font-bold mb-4">Join the VibeHub Portal</h2>
                     <p class="text-gray-400 text-lg">Access our exclusive members-only portal to book rooms, RSVP to events, connect with other members, and unlock special perks. Your network is your net worth.</p>
                 </div>
-                <div class="md:w-1/2 flex justify-center md:justify-end">
-                    <a href="#" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-8 py-4 rounded-lg transition-transform transform hover:scale-105 text-lg">
+                <div id="portal" class="md:w-1/2 flex justify-center md:justify-end">
+                    <a href="#" class="bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 py-4 rounded-lg transition-transform transform hover:scale-105 text-lg">
                         Enter Portal
                     </a>
                 </div>
@@ -178,39 +208,40 @@
     </section>
 
     <!-- Book a Tour Section -->
-    <section id="tour" class="py-20 bg-gray-900">
+    <section id="tour" class="py-20 bg-gray-950">
         <div class="container mx-auto px-6">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold">See the Vibe for Yourself</h2>
                 <p class="text-gray-400 mt-2">Schedule a tour and we'll show you around. Free coffee on us!</p>
             </div>
-            <div class="max-w-xl mx-auto bg-gray-800 p-8 rounded-xl border border-gray-700">
+            <div class="max-w-xl mx-auto bg-gray-900 p-8 rounded-xl border border-gray-700">
                 <form id="tourForm">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
-                            <input type="text" id="name" name="name" class="w-full bg-gray-700 border-gray-600 text-white rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition" required>
+                            <input type="text" id="name" name="name" class="w-full bg-gray-800 border-gray-700 text-white rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition" required>
                         </div>
                         <div>
                             <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email Address</label>
-                            <input type="email" id="email" name="email" class="w-full bg-gray-700 border-gray-600 text-white rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition" required>
+                            <input type="email" id="email" name="email" class="w-full bg-gray-800 border-gray-700 text-white rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition" required>
                         </div>
                     </div>
                     <div class="mb-6">
                         <label for="date" class="block text-sm font-medium text-gray-300 mb-2">Preferred Date</label>
-                        <input type="date" id="date" name="date" class="w-full bg-gray-700 border-gray-600 text-white rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition" required>
+                        <input type="date" id="date" name="date" class="w-full bg-gray-800 border-gray-700 text-white rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition" required style="color-scheme: dark;">
                     </div>
                     <div class="mb-6">
                         <label for="interest" class="block text-sm font-medium text-gray-300 mb-2">I'm interested in...</label>
-                        <select id="interest" name="interest" class="w-full bg-gray-700 border-gray-600 text-white rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition">
-                            <option>Hot Desk</option>
+                        <select id="interest" name="interest" class="w-full bg-gray-800 border-gray-700 text-white rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition">
+                            <option>Private Suite</option>
                             <option>Dedicated Desk</option>
-                            <option>Private Office</option>
+                            <option>Hot Desk</option>
+                            <option>Weekly/Day Pass</option>
                             <option>Just curious!</option>
                         </select>
                     </div>
                     <div>
-                        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 rounded-lg transition-transform transform hover:scale-102 text-lg">
+                        <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 rounded-lg transition-transform transform hover:scale-102 text-lg">
                             Request Tour
                         </button>
                     </div>
@@ -221,61 +252,66 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 border-t border-gray-700">
+    <footer class="bg-gray-900 border-t border-gray-800">
         <div class="container mx-auto px-6 py-8">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="text-center md:text-left mb-4 md:mb-0">
+            <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+                <div class="mb-4 md:mb-0">
                     <a href="#" class="text-xl font-bold tracking-tighter">VibeHub</a>
                     <p class="text-gray-400 mt-1">© 2025 VibeHub Inc. All rights reserved.</p>
                 </div>
                 <div class="flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.013-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.08 2.525c.636-.247 1.363-.416 2.427-.465C9.53 2.013 9.884 2 12.315 2zM12 7a5 5 0 100 10 5 5 0 000-10zm0-2a7 7 0 110 14 7 7 0 010-14zm6.406-1.19a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z" clip-rule="evenodd" /></svg>
-                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.013-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.08 2.525c.636-.247 1.363-.416 2.427.465C9.53 2.013 9.884 2 12.315 2zM12 7a5 5 0 100 10 5 5 0 000-10zm0-2a7 7 0 110 14 7 7 0 010-14zm6.406-1.19a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z" clip-rule="evenodd" /></svg></a>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mobile menu toggle
+            const menuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const openIcon = document.getElementById('menu-open-icon');
+            const closeIcon = document.getElementById('menu-close-icon');
+
+            menuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                openIcon.classList.toggle('hidden');
+                closeIcon.classList.toggle('hidden');
+            });
+            
+            // Close mobile menu when a link is clicked
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    openIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
                 });
             });
-        });
 
-        // Form submission handling
-        const tourForm = document.getElementById('tourForm');
-        const formMessage = document.getElementById('form-message');
+            // Form submission handling
+            const tourForm = document.getElementById('tourForm');
+            const formMessage = document.getElementById('form-message');
 
-        tourForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Basic validation
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const date = document.getElementById('date').value;
+            tourForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const date = document.getElementById('date').value;
 
-            if (!name || !email || !date) {
-                formMessage.textContent = 'Please fill out all required fields.';
-                formMessage.className = 'mt-4 text-center text-red-400';
-                return;
-            }
+                if (!name || !email || !date) {
+                    formMessage.textContent = 'Please fill out all required fields.';
+                    formMessage.className = 'mt-4 text-center text-red-400';
+                    return;
+                }
 
-            // Simulate form submission
-            formMessage.textContent = 'Thank you! Your tour request has been sent. We\'ll be in touch shortly.';
-            formMessage.className = 'mt-4 text-center text-green-400';
-            tourForm.reset();
+                formMessage.textContent = 'Thank you! Your tour request has been sent. We\'ll be in touch shortly.';
+                formMessage.className = 'mt-4 text-center text-green-400';
+                tourForm.reset();
+            });
         });
     </script>
 </body>
