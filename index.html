@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worq - Redefine Your Hustle</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide-react@0.292.0/dist/lucide-react.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0A0A0A;
+            color: #F5F5F5;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #A78BFA, #F472B6, #60A5FA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-glow {
+            box-shadow: 0 0 80px 20px rgba(167, 139, 250, 0.2), 0 0 100px 30px rgba(244, 114, 182, 0.1);
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(167, 139, 250, 0.5);
+        }
+        .btn-primary {
+            background: linear-gradient(90deg, #8B5CF6, #D946EF);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.6);
+        }
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-black/30 backdrop-blur-lg border-b border-white/10">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-3xl font-bold tracking-tighter">worq.</h1>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Features</a>
+                <a href="#" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Community</a>
+                <a href="#" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Pricing</a>
+            </nav>
+            <a href="#" class="btn-primary text-white font-semibold py-2 px-5 rounded-full text-sm">
+                Get Started
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="pt-40 pb-24 text-center relative overflow-hidden">
+             <div class="absolute inset-0 -z-10 hero-glow opacity-50"></div>
+            <div class="container mx-auto px-6">
+                <h2 class="text-5xl md:text-7xl font-extrabold tracking-tighter leading-tight">
+                    Ditch the 9-to-5 grind.
+                    <br>
+                    <span class="gradient-text">Own your hustle.</span>
+                </h2>
+                <p class="max-w-2xl mx-auto mt-6 text-lg text-gray-400">
+                    Worq is your all-in-one toolkit to manage projects, vibe with your team, and get paid. It's work, but like, actually fun. No cap.
+                </p>
+                <div class="mt-10 flex justify-center items-center gap-4">
+                    <a href="#" class="btn-primary text-white font-bold py-3 px-8 rounded-full">
+                        Join the Movement
+                    </a>
+                    <a href="#" class="btn-secondary text-white font-semibold py-3 px-8 rounded-full">
+                        See How It Works
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="py-24 bg-black/20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h3 class="text-4xl font-bold tracking-tight">Vibe Checks for Your Workflow</h3>
+                    <p class="text-gray-400 mt-2">All the tools you need, none of the corporate jargon.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Feature Card 1 -->
+                    <div class="card-hover bg-white/5 p-8 rounded-2xl border border-white/10">
+                        <div class="w-12 h-12 bg-violet-500/20 rounded-lg flex items-center justify-center mb-4">
+                            <!-- SVG Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-2.1 2.1-2.1 5.6 0 7.7 2.1 2.1 5.6 2.1 7.7 0l1.6-1.6c.2-.2.3-.4.3-.7 0-.6-.4-1-1-1H4.5z"/><path d="m19.5 8.5c2.1-2.1 2.1-5.6 0-7.7-2.1-2.1-5.6-2.1-7.7 0l-1.6 1.6c-.2.2-.3.4-.3.7 0 .6.4 1 1 1h13.5z"/></svg>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Project Flow</h4>
+                        <p class="text-gray-400">Visualize your tasks, not in boring lists, but in flows that actually make sense. Drag, drop, and you're done.</p>
+                    </div>
+                    <!-- Feature Card 2 -->
+                    <div class="card-hover bg-white/5 p-8 rounded-2xl border border-white/10">
+                         <div class="w-12 h-12 bg-pink-500/20 rounded-lg flex items-center justify-center mb-4">
+                            <!-- SVG Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F472B6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Squad Sync</h4>
+                        <p class="text-gray-400">Link up with your crew in dedicated channels. Share memes, files, and feedback. Keep the good vibes going.</p>
+                    </div>
+                    <!-- Feature Card 3 -->
+                    <div class="card-hover bg-white/5 p-8 rounded-2xl border border-white/10">
+                         <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4">
+                           <!-- SVG Icon -->
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Get Paid, Not Played</h4>
+                        <p class="text-gray-400">Create invoices with a click, track payments, and get that bread. We handle the boring stuff so you can focus on creating.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="py-24">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-16">
+                    <h3 class="text-4xl font-bold tracking-tight">Straight from the Source</h3>
+                    <p class="text-gray-400 mt-2">Don't just take our word for it.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-gray-900 p-6 rounded-xl border border-white/10">
+                        <p class="text-gray-300">"Worq is a total game-changer. My team is actually organized now and it didn't feel like a chore to set up. 10/10 would recommend."</p>
+                        <div class="flex items-center mt-4">
+                            <img src="https://placehold.co/40x40/1F2937/FFFFFF?text=AV" alt="User avatar" class="w-10 h-10 rounded-full">
+                            <div class="ml-3">
+                                <p class="font-semibold text-white">@designbyaisha</p>
+                                <p class="text-sm text-gray-500">Freelance Designer</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="bg-gray-900 p-6 rounded-xl border border-white/10">
+                        <p class="text-gray-300">"Finally, an app that gets it. The UI is clean, it's fast, and the 'Squad Sync' is low-key the best chat app I've used for work. It's giving... productivity."</p>
+                        <div class="flex items-center mt-4">
+                            <img src="https://placehold.co/40x40/1F2937/FFFFFF?text=JC" alt="User avatar" class="w-10 h-10 rounded-full">
+                            <div class="ml-3">
+                                <p class="font-semibold text-white">@jakecomms</p>
+                                <p class="text-sm text-gray-500">Content Creator</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 3 -->
+                     <div class="bg-gray-900 p-6 rounded-xl border border-white/10">
+                        <p class="text-gray-300">"The payment feature is so clutch. Sent an invoice and got paid the same day. Worq handles the awkward money chats for me. A real one."</p>
+                        <div class="flex items-center mt-4">
+                            <img src="https://placehold.co/40x40/1F2937/FFFFFF?text=MK" alt="User avatar" class="w-10 h-10 rounded-full">
+                            <div class="ml-3">
+                                <p class="font-semibold text-white">@codemike</p>
+                                <p class="text-sm text-gray-500">Indie Developer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-24">
+            <div class="container mx-auto px-6 text-center">
+                 <div class="max-w-3xl mx-auto">
+                    <h3 class="text-4xl md:text-5xl font-bold tracking-tight">Ready to Change the Game?</h3>
+                    <p class="text-gray-400 mt-4 text-lg">
+                        Stop dreaming, start doing. Join thousands of creators, freelancers, and teams building their future on Worq.
+                    </p>
+                    <div class="mt-8">
+                        <a href="#" class="btn-primary text-white font-bold py-4 px-10 rounded-full text-lg">
+                            Start for Free
+                        </a>
+                    </div>
+                 </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10">
+        <div class="container mx-auto px-6 py-12">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="text-center md:text-left mb-6 md:mb-0">
+                    <h3 class="text-2xl font-bold">worq.</h3>
+                    <p class="text-gray-500 mt-1">The future of work is you.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M22 4s-.7 2.1-2 3.4c1.6 1.4 2.8 3.2 3 5.2-2.7-1.7-5.5-2.5-8.3-2.5-.8 0-1.6.1-2.4.2-3.8-.6-7.3-2.9-9.8-6.3.8 2.1 2.1 3.8 3.8 4.8-1.1-.3-2.1-.7-3-1.2.2 2.6 1.8 4.8 3.9 5.7-1 .3-2.1.4-3.2.3.7 2.3 2.7 3.9 5.1 4.3-2.1 1.6-4.7 2.5-7.4 2.5-.8 0-1.5-.1-2.2-.3 2.8 1.8 6.1 2.8 9.6 2.8 7.8 0 12.1-6.5 12.1-12.1 0-.2 0-.4 0-.6.8-.6 1.5-1.3 2.1-2.1z"/></svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M16.5 2H7.5C4.46 2 2 4.46 2 7.5v9C2 19.54 4.46 22 7.5 22h9c3.04 0 5.5-2.46 5.5-5.5v-9C22 4.46 19.54 2 16.5 2z"/><path d="M14.5 9.08a2.5 2.5 0 1 0-5 0v5.84a2.5 2.5 0 1 0 5 0V9.08z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-white/10 text-center text-sm text-gray-500">
+                <p>&copy; 2024 Worq Inc. All rights reserved. Bet.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
