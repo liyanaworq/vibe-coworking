@@ -9,12 +9,31 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
         }
+        
+        /* Dark mode styles */
+        body.dark {
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+        
+        body.light {
+            background-color: #fafafa;
+            color: #1e293b;
+        }
+        
         .hero-bg {
-            background-image: linear-gradient(rgba(3, 7, 18, 0.8), rgba(3, 7, 18, 0.8)), url('https://placehold.co/1600x900/030712/1f2937?text=VibeHub+Space');
+            background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('https://placehold.co/1600x900/0f172a/334155?text=VibeHub+Space');
             background-size: cover;
             background-position: center;
+            transition: all 0.3s ease;
         }
+        
+        body.light .hero-bg {
+            background-image: linear-gradient(rgba(250, 250, 250, 0.92), rgba(250, 250, 250, 0.92)), url('https://placehold.co/1600x900/f5f5f5/94a3b8?text=VibeHub+Space');
+        }
+        
         .glow-effect {
             position: absolute;
             top: 50%;
@@ -22,33 +41,232 @@
             transform: translate(-50%, -50%);
             width: 50%;
             height: 50%;
-            background: radial-gradient(circle, rgba(249, 115, 22, 0.2) 0%, rgba(249, 115, 22, 0) 70%);
-            filter: blur(120px);
+            background: radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, rgba(236, 72, 153, 0.1) 30%, rgba(139, 92, 246, 0.05) 70%);
+            filter: blur(140px);
             z-index: 0;
+            transition: all 0.3s ease;
+        }
+        
+        body.light .glow-effect {
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, rgba(147, 51, 234, 0.08) 30%, rgba(236, 72, 153, 0.05) 70%);
+        }
+        
+        /* Dark mode toggle styles */
+        .theme-toggle {
+            position: relative;
+            width: 72px;
+            height: 36px;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            border-radius: 18px;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid #334155;
+            box-shadow: 
+                inset 0 2px 4px rgba(0,0,0,0.3),
+                0 4px 12px rgba(0,0,0,0.2),
+                0 0 0 0 rgba(249, 115, 22, 0);
+            overflow: hidden;
+        }
+        
+        .theme-toggle::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(236, 72, 153, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 18px;
+        }
+        
+        body.light .theme-toggle {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border-color: #cbd5e1;
+            box-shadow: 
+                inset 0 2px 4px rgba(0,0,0,0.1),
+                0 4px 12px rgba(0,0,0,0.1),
+                0 0 0 0 rgba(59, 130, 246, 0);
+        }
+        
+        body.light .theme-toggle::after {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1));
+        }
+        
+        .theme-toggle::before {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 26px;
+            height: 26px;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            border-radius: 50%;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 2px 8px rgba(251, 191, 36, 0.4),
+                0 0 0 2px rgba(251, 191, 36, 0.2);
+            z-index: 2;
+        }
+        
+        body.light .theme-toggle::before {
+            left: 43px;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            box-shadow: 
+                0 2px 8px rgba(59, 130, 246, 0.4),
+                0 0 0 2px rgba(59, 130, 246, 0.2);
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 
+                inset 0 2px 4px rgba(0,0,0,0.3),
+                0 8px 24px rgba(0,0,0,0.3),
+                0 0 0 4px rgba(249, 115, 22, 0.2);
+        }
+        
+        body.light .theme-toggle:hover {
+            box-shadow: 
+                inset 0 2px 4px rgba(0,0,0,0.1),
+                0 8px 24px rgba(0,0,0,0.15),
+                0 0 0 4px rgba(59, 130, 246, 0.2);
+        }
+        
+        .theme-toggle:hover::after {
+            opacity: 1;
+        }
+        
+        .theme-toggle:active {
+            transform: scale(0.98);
+        }
+        
+        .theme-toggle:active::before {
+            transform: scale(0.95);
+        }
+        
+        /* Toggle animation states */
+        .theme-toggle.switching {
+            animation: toggle-pulse 0.6s ease-in-out;
+        }
+        
+        @keyframes toggle-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        /* Icon animations */
+        .theme-toggle svg {
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+        
+        body.light .theme-toggle svg {
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+        
+        .theme-toggle:hover svg {
+            transform: scale(1.1);
+        }
+        
+        /* Gen Z neon effects */
+        .neon-text {
+            text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+        }
+        
+        .neon-border {
+            box-shadow: 0 0 20px rgba(249, 115, 22, 0.3), 0 0 40px rgba(236, 72, 153, 0.2), inset 0 0 20px rgba(249, 115, 22, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .neon-border:hover {
+            box-shadow: 0 0 30px rgba(249, 115, 22, 0.5), 0 0 60px rgba(236, 72, 153, 0.3), inset 0 0 30px rgba(249, 115, 22, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #f97316 0%, #ec4899 50%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradient-shift 3s ease-in-out infinite;
+        }
+        
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(16px);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        body.light .glass-effect {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Smooth transitions for all elements */
+        * {
+            transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                        color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                        border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                        box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Enhanced hover effects */
+        .glass-effect:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        body.light .glass-effect:hover {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
         }
     </style>
 </head>
-<body class="bg-gray-950 text-white">
+<body class="bg-gray-950 text-white dark">
 
     <!-- Header -->
-    <header class="fixed w-full bg-gray-950/80 backdrop-blur-sm z-50">
+    <header class="fixed w-full glass-effect z-50 dark:!bg-gray-900 bg-gray-100">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <a href="#" class="text-2xl font-bold tracking-tighter text-white">VibeHub</a>
+                <a href="#" class="text-2xl font-bold tracking-tighter gradient-text">VibeHub</a>
                 
                 <!-- Desktop Navigation -->
                 <nav class="hidden md:flex items-center space-x-8">
-                    <a href="#features" class="hover:text-orange-400 transition-colors">Features</a>
-                    <a href="#products" class="hover:text-orange-400 transition-colors">Spaces</a>
-                    <a href="#community" class="hover:text-orange-400 transition-colors">Community</a>
+                    <a href="#features" class="hover:text-orange-400 transition-colors dark:text-white text-gray-900">Features</a>
+                    <a href="#products" class="hover:text-orange-400 transition-colors dark:text-white text-gray-900">Spaces</a>
+                    <a href="#community" class="hover:text-orange-400 transition-colors dark:text-white text-gray-900">Community</a>
                 </nav>
 
                 <div class="flex items-center space-x-4">
-                    <a href="#tour" class="hidden sm:block bg-orange-500 hover:bg-orange-600 text-white font-semibold px-5 py-2 rounded-lg transition-all transform hover:scale-105">
+                    <!-- Dark Mode Toggle -->
+                    <div class="theme-toggle hidden" id="theme-toggle" title="Toggle dark/light mode">
+                        <!-- Moon icon (left) -->
+                        <div class="absolute left-2 top-1/2 -translate-y-1/2 z-10 pointer-events-none">
+                            <svg class="w-5 h-5 text-blue-500 dark:block hidden transition-all duration-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                            </svg>
+                        </div>
+                        <!-- Sun icon (right) -->
+                        <div class="absolute right-2 top-1/2 -translate-y-1/2 z-10 pointer-events-none">
+                            <svg class="w-5 h-5 text-yellow-300 dark:hidden block transition-all duration-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <a href="#tour" class="hidden sm:block bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white font-semibold px-5 py-2 rounded-lg transition-all transform hover:scale-105 neon-border">
                         Book a Tour
                     </a>
                     <!-- Mobile Menu Button -->
-                    <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700">
+                    <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700">
                         <svg id="menu-open-icon" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
                         </svg>
@@ -61,10 +279,10 @@
             <!-- Mobile Menu -->
             <div id="mobile-menu" class="hidden md:hidden mt-4">
                 <nav class="flex flex-col space-y-4">
-                    <a href="#features" class="hover:text-orange-400 transition-colors block px-3 py-2 rounded-md text-base font-medium">Features</a>
-                    <a href="#products" class="hover:text-orange-400 transition-colors block px-3 py-2 rounded-md text-base font-medium">Spaces</a>
-                    <a href="#community" class="hover:text-orange-400 transition-colors block px-3 py-2 rounded-md text-base font-medium">Community</a>
-                    <a href="#tour" class="sm:hidden mt-2 w-full text-center bg-orange-500 hover:bg-orange-600 text-white font-semibold px-5 py-3 rounded-lg transition-all">
+                    <a href="#features" class="hover:text-orange-400 transition-colors block px-3 py-2 rounded-md text-base font-medium dark:text-white text-gray-900">Features</a>
+                    <a href="#products" class="hover:text-orange-400 transition-colors block px-3 py-2 rounded-md text-base font-medium dark:text-white text-gray-900">Spaces</a>
+                    <a href="#community" class="hover:text-orange-400 transition-colors block px-3 py-2 rounded-md text-base font-medium dark:text-white text-gray-900">Community</a>
+                    <a href="#tour" class="sm:hidden mt-2 w-full text-center bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white font-semibold px-5 py-3 rounded-lg transition-all">
                         Book a Tour
                     </a>
                 </nav>
@@ -72,116 +290,98 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <main class="relative overflow-hidden hero-bg pt-32 pb-20 md:pt-48 md:pb-32">
-        <div class="glow-effect"></div>
-        <div class="container mx-auto px-6 text-center relative z-10">
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter mb-4">
-                Where Your Best Work <span class="text-orange-400">Happens.</span>
-            </h1>
-            <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">
-                Ditch the coffee shop chaos. VibeHub is the aesthetic, high-tech coworking space designed for creators, freelancers, and startups to connect and innovate.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
-                <a href="#tour" class="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 py-4 rounded-lg transition-transform transform hover:scale-105 text-lg">
-                    Book a Tour
-                </a>
-                <a href="#portal" class="w-full sm:w-auto bg-gray-700 hover:bg-gray-600 text-white font-bold px-8 py-4 rounded-lg transition-transform transform hover:scale-105 text-lg">
-                    Community Portal
-                </a>
-            </div>
-        </div>
-    </main>
+    <!-- Hero Section Widget -->
+    <div id="hero-widget"></div>
 
     <!-- Features Section -->
-    <section id="features" class="py-20 bg-gray-900">
+    <section id="features" class="py-20 dark:bg-slate-800/50 bg-slate-50">
         <div class="container mx-auto px-6">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold">Not Your Average Office</h2>
-                <p class="text-gray-400 mt-2">Everything you need to level up your grind.</p>
+                <h2 class="text-3xl md:text-4xl font-bold dark:!text-white text-gray-900">Not Your Average Office</h2>
+                <p class="text-gray-400 dark:text-gray-400 text-gray-600 mt-2">Everything you need to level up your grind.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Feature Cards -->
-                <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 hover:border-orange-500 transition-all duration-300 transform hover:-translate-y-2">
+                <div class="glass-effect p-8 rounded-xl border border-gray-700 dark:border-gray-700 border-gray-300 hover:border-orange-500 transition-all duration-300 transform hover:-translate-y-2">
                     <div class="text-orange-400 mb-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg></div>
-                    <h3 class="text-xl font-bold mb-2">Blazing-Fast WiFi</h3>
-                    <p class="text-gray-400">Gigabit fiber internet so your workflow is never interrupted. Upload, download, and stream without a single lag spike.</p>
+                    <h3 class="text-xl font-bold mb-2 dark:text-white text-gray-900">Blazing-Fast WiFi</h3>
+                    <p class="text-gray-400 dark:text-gray-400 text-gray-600">Gigabit fiber internet so your workflow is never interrupted. Upload, download, and stream without a single lag spike.</p>
                 </div>
-                <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 hover:border-orange-500 transition-all duration-300 transform hover:-translate-y-2">
+                <div class="glass-effect p-8 rounded-xl border border-gray-700 dark:border-gray-700 border-gray-300 hover:border-orange-500 transition-all duration-300 transform hover:-translate-y-2">
                     <div class="text-orange-400 mb-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg></div>
-                    <h3 class="text-xl font-bold mb-2">Creator Community</h3>
-                    <p class="text-gray-400">Connect with a curated community of designers, developers, and entrepreneurs. Your next collaborator is just a desk away.</p>
+                    <h3 class="text-xl font-bold mb-2 dark:text-white text-gray-900">Creator Community</h3>
+                    <p class="text-gray-400 dark:text-gray-400 text-gray-600">Connect with a curated community of designers, developers, and entrepreneurs. Your next collaborator is just a desk away.</p>
                 </div>
-                <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 hover:border-orange-500 transition-all duration-300 transform hover:-translate-y-2">
+                <div class="glass-effect p-8 rounded-xl border border-gray-700 dark:border-gray-700 border-gray-300 hover:border-orange-500 transition-all duration-300 transform hover:-translate-y-2">
                     <div class="text-orange-400 mb-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg></div>
-                    <h3 class="text-xl font-bold mb-2">Inspiring Spaces</h3>
-                    <p class="text-gray-400">From sunlit open desks to soundproof podcast studios and focus rooms, find the perfect environment for your tasks.</p>
+                    <h3 class="text-xl font-bold mb-2 dark:text-white text-gray-900">Inspiring Spaces</h3>
+                    <p class="text-gray-400 dark:text-gray-400 text-gray-600">From sunlit open desks to soundproof podcast studios and focus rooms, find the perfect environment for your tasks.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Products/Spaces Section -->
-    <section id="products" class="py-20 bg-gray-950">
+    <section id="products" class="py-20 dark:bg-slate-900/30 bg-white">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold">Find Your Perfect Space</h2>
-                <p class="text-gray-400 mt-2">Flexible solutions for individuals and teams of all sizes.</p>
+                <h2 class="text-3xl md:text-4xl font-bold dark:!text-white text-gray-900">Find Your Perfect Space</h2>
+                <p class="text-gray-400 dark:text-gray-400 text-gray-600 mt-2">Flexible solutions for individuals and teams of all sizes.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
                 <!-- Product Card: Private Suites -->
-                <div class="bg-gray-900 rounded-xl overflow-hidden border border-gray-700 flex flex-col group">
-                    <img src="https://placehold.co/600x400/111827/f97316?text=Private+Suite" alt="Private Suite" class="h-56 w-full object-cover group-hover:scale-105 transition-transform duration-300">
+                <div class="glass-effect rounded-xl overflow-hidden border border-gray-700 dark:border-gray-700 border-gray-300 flex flex-col group">
+                    <img src="https://placehold.co/600x400/111827/f97316?text=Private+Suite" alt="Private Suite" class="h-56 w-full object-cover group-hover:scale-105 transition-transform dark:!bg-gray-900 bg-gray-200 duration-300">
                     <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-2xl font-bold mb-2">Private Suites</h3>
-                        <p class="text-gray-400 mb-4 flex-grow">A fully-enclosed, lockable office for your team. Ultimate privacy and customization. Perfect for startups and established companies.</p>
+                        <h3 class="text-2xl font-bold mb-2 dark:text-white text-gray-900">Private Suites</h3>
+                        <p class="text-gray-400 dark:text-gray-400 text-gray-600 mb-4 flex-grow">A fully-enclosed, lockable office for your team. Ultimate privacy and customization. Perfect for startups and established companies.</p>
                         <p class="text-2xl font-bold text-orange-400 mb-4">From $1200/mo</p>
-                        <a href="#tour" class="mt-auto w-full text-center bg-gray-700 hover:bg-orange-500 text-white font-bold py-3 rounded-lg transition-colors">Book a Tour</a>
+                        <a href="#tour" class="mt-auto w-full text-center bg-gray-700 hover:bg-orange-500 dark:bg-gray-700 dark:hover:bg-orange-500 bg-gray-200 hover:bg-orange-500 text-white font-bold py-3 rounded-lg transition-colors">Book a Tour</a>
                     </div>
                 </div>
 
                 <!-- Product Card: Dedicated Desk -->
-                <div class="bg-gray-900 rounded-xl overflow-hidden border border-gray-700 flex flex-col group">
-                    <img src="https://placehold.co/600x400/111827/f97316?text=Dedicated+Desk" alt="Dedicated Desk" class="h-56 w-full object-cover group-hover:scale-105 transition-transform duration-300">
+                <div class="glass-effect rounded-xl overflow-hidden border border-gray-700 dark:border-gray-700 border-gray-300 flex flex-col group">
+                    <img src="https://placehold.co/600x400/111827/f97316?text=Dedicated+Desk" alt="Dedicated Desk" class="h-56 w-full object-cover group-hover:scale-105 transition-transform duration-300 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900">
                     <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-2xl font-bold mb-2">Dedicated Desk</h3>
-                        <p class="text-gray-400 mb-4 flex-grow">Your own personal desk in our shared space. Set up your monitor and leave your gear securely. Your spot is always waiting.</p>
+                        <h3 class="text-2xl font-bold mb-2 dark:text-white text-gray-900">Dedicated Desk</h3>
+                        <p class="text-gray-400 dark:text-gray-400 text-gray-600 mb-4 flex-grow">Your own personal desk in our shared space. Set up your monitor and leave your gear securely. Your spot is always waiting.</p>
                          <p class="text-2xl font-bold text-orange-400 mb-4">From $450/mo</p>
-                        <a href="#tour" class="mt-auto w-full text-center bg-gray-700 hover:bg-orange-500 text-white font-bold py-3 rounded-lg transition-colors">Book a Tour</a>
+                        <a href="#tour" class="mt-auto w-full text-center bg-gray-700 hover:bg-orange-500 dark:bg-gray-700 dark:hover:bg-orange-500 bg-gray-200 hover:bg-orange-500 text-white font-bold py-3 rounded-lg transition-colors">Book a Tour</a>
                     </div>
                 </div>
 
                 <!-- Product Card: Hot Desk -->
-                <div class="bg-gray-900 rounded-xl overflow-hidden border border-gray-700 flex flex-col group">
-                    <img src="https://placehold.co/600x400/111827/f97316?text=Hot+Desk" alt="Hot Desk" class="h-56 w-full object-cover group-hover:scale-105 transition-transform duration-300">
+                <div class="glass-effect rounded-xl overflow-hidden border border-gray-700 dark:border-gray-700 border-gray-300 flex flex-col group">
+                    <img src="https://placehold.co/600x400/111827/f97316?text=Hot+Desk" alt="Hot Desk" class="h-56 w-full object-cover group-hover:scale-105 transition-transform duration-300 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900">
                     <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-2xl font-bold mb-2">Hot Desk</h3>
-                        <p class="text-gray-400 mb-4 flex-grow">Grab any open seat in our common areas. Maximum flexibility for freelancers and remote workers on the go.</p>
+                        <h3 class="text-2xl font-bold mb-2 dark:text-white text-gray-900">Hot Desk</h3>
+                        <p class="text-gray-400 dark:text-gray-400 text-gray-600 mb-4 flex-grow">Grab any open seat in our common areas. Maximum flexibility for freelancers and remote workers on the go.</p>
                          <p class="text-2xl font-bold text-orange-400 mb-4">From $250/mo</p>
-                        <a href="#tour" class="mt-auto w-full text-center bg-gray-700 hover:bg-orange-500 text-white font-bold py-3 rounded-lg transition-colors">Book a Tour</a>
+                        <a href="#tour" class="mt-auto w-full text-center bg-gray-700 hover:bg-orange-500 dark:bg-gray-700 dark:hover:bg-orange-500 bg-gray-200 hover:bg-orange-500 text-white font-bold py-3 rounded-lg transition-colors">Book a Tour</a>
                     </div>
                 </div>
                 
                 <!-- Product Card: Weekly Pass -->
-                <div class="bg-gray-900 rounded-xl overflow-hidden border border-gray-700 flex flex-col group md:col-span-2 lg:col-span-1">
-                    <img src="https://placehold.co/600x400/111827/f97316?text=Weekly+Pass" alt="Weekly Pass" class="h-56 w-full object-cover group-hover:scale-105 transition-transform duration-300">
+                <div class="glass-effect rounded-xl overflow-hidden border border-gray-700 dark:border-gray-700 border-gray-300 flex flex-col group md:col-span-2 lg:col-span-1">
+                    <img src="https://placehold.co/600x400/111827/f97316?text=Weekly+Pass" alt="Weekly Pass" class="h-56 w-full object-cover group-hover:scale-105 transition-transform duration-300 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900">
                     <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-2xl font-bold mb-2">Weekly Pass</h3>
-                        <p class="text-gray-400 mb-4 flex-grow">Need a space for a short-term project? Get access to our hot desks and amenities for a full week.</p>
+                        <h3 class="text-2xl font-bold mb-2 dark:text-white text-gray-900">Weekly Pass</h3>
+                        <p class="text-gray-400 dark:text-gray-400 text-gray-600 mb-4 flex-grow">Need a space for a short-term project? Get access to our hot desks and amenities for a full week.</p>
                          <p class="text-2xl font-bold text-orange-400 mb-4">From $100/wk</p>
-                        <a href="#tour" class="mt-auto w-full text-center bg-gray-700 hover:bg-orange-500 text-white font-bold py-3 rounded-lg transition-colors">Get Pass</a>
+                        <a href="#tour" class="mt-auto w-full text-center bg-gray-700 hover:bg-orange-500 dark:bg-gray-700 dark:hover:bg-orange-500 bg-gray-200 hover:bg-orange-500 text-white font-bold py-3 rounded-lg transition-colors">Get Pass</a>
                     </div>
                 </div>
 
                 <!-- Product Card: Day Pass -->
-                <div class="bg-gray-900 rounded-xl overflow-hidden border border-gray-700 flex flex-col group">
-                    <img src="https://placehold.co/600x400/111827/f97316?text=Day+Pass" alt="Day Pass" class="h-56 w-full object-cover group-hover:scale-105 transition-transform duration-300">
+                <div class="glass-effect rounded-xl overflow-hidden border border-gray-700 dark:border-gray-700 border-gray-300 flex flex-col group">
+                    <img src="https://placehold.co/600x400/111827/f97316?text=Day+Pass" alt="Day Pass" class="h-56 w-full object-cover group-hover:scale-105 transition-transform duration-300 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900 bg-gray-100 dark:!bg-gray-900">
                     <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-2xl font-bold mb-2">Day Pass</h3>
-                        <p class="text-gray-400 mb-4 flex-grow">Drop in for the day. Perfect for a change of scenery or when you need a productive burst of focus.</p>
+                        <h3 class="text-2xl font-bold mb-2 dark:text-white text-gray-900">Day Pass</h3>
+                        <p class="text-gray-400 dark:text-gray-400 text-gray-600 mb-4 flex-grow">Drop in for the day. Perfect for a change of scenery or when you need a productive burst of focus.</p>
                          <p class="text-2xl font-bold text-orange-400 mb-4">From $35/day</p>
-                        <a href="#tour" class="mt-auto w-full text-center bg-gray-700 hover:bg-orange-500 text-white font-bold py-3 rounded-lg transition-colors">Get Pass</a>
+                        <a href="#tour" class="mt-auto w-full text-center bg-gray-700 hover:bg-orange-500 dark:bg-gray-700 dark:hover:bg-orange-500 bg-gray-200 hover:bg-orange-500 text-white font-bold py-3 rounded-lg transition-colors">Get Pass</a>
                     </div>
                 </div>
 
@@ -191,48 +391,48 @@
 
 
     <!-- Community Portal Section -->
-    <section id="community" class="py-20 bg-gray-900">
+    <section id="community" class="py-20 dark:bg-slate-800/50 bg-slate-50">
         <div class="container mx-auto px-6">
-            <div class="bg-gray-800 rounded-2xl p-10 md:p-16 flex flex-col md:flex-row items-center justify-between border border-gray-700">
+            <div class="glass-effect rounded-2xl p-10 md:p-16 flex flex-col md:flex-row items-center justify-between border border-gray-700 dark:border-gray-700 border-gray-300">
                 <div class="md:w-1/2 mb-8 md:mb-0 text-center md:text-left">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Join the VibeHub Portal</h2>
-                    <p class="text-gray-400 text-lg">Access our exclusive members-only portal to book rooms, RSVP to events, connect with other members, and unlock special perks. Your network is your net worth.</p>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 dark:text-white text-gray-900">Join the VibeHub Portal</h2>
+                    <p class="text-gray-400 dark:text-gray-400 text-gray-600 text-lg">Access our exclusive members-only portal to book rooms, RSVP to events, connect with other members, and unlock special perks. Your network is your net worth.</p>
                 </div>
-                <div id="portal" class="md:w-1/2 flex justify-center md:justify-end">
-                    <a href="#" class="bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 py-4 rounded-lg transition-transform transform hover:scale-105 text-lg">
-                        Enter Portal
-                    </a>
-                </div>
+                            <div id="portal" class="md:w-1/2 flex justify-center md:justify-end">
+                <a href="https://worq.officernd.com/login" target="_blank" rel="noopener noreferrer" class="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white font-bold px-8 py-4 rounded-lg transition-transform transform hover:scale-105 text-lg neon-border">
+                    Enter Portal
+                </a>
+            </div>
             </div>
         </div>
     </section>
 
     <!-- Book a Tour Section -->
-    <section id="tour" class="py-20 bg-gray-950">
+    <section id="tour" class="py-20 dark:bg-slate-900/30 bg-white">
         <div class="container mx-auto px-6">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold">See the Vibe for Yourself</h2>
-                <p class="text-gray-400 mt-2">Schedule a tour and we'll show you around. Free coffee on us!</p>
+                <h2 class="text-3xl md:text-4xl font-bold dark:!text-white text-gray-900">See the Vibe for Yourself</h2>
+                <p class="text-gray-400 dark:text-gray-400 text-gray-600 mt-2">Schedule a tour and we'll show you around. Free coffee on us!</p>
             </div>
-            <div class="max-w-xl mx-auto bg-gray-900 p-8 rounded-xl border border-gray-700">
+            <div class="max-w-xl mx-auto glass-effect p-8 rounded-xl border border-gray-700 dark:border-gray-700 border-gray-300">
                 <form id="tourForm">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                         <div>
-                            <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
-                            <input type="text" id="name" name="name" class="w-full bg-gray-800 border-gray-700 text-white rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition" required>
+                            <label for="name" class="block text-sm font-medium text-gray-300 dark:text-gray-300 text-gray-700 mb-2">Full Name</label>
+                            <input type="text" id="name" name="name" class="w-full bg-gray-800 dark:bg-gray-800 bg-gray-100 border-gray-700 dark:border-gray-700 border-gray-300 text-white dark:text-white text-gray-900 rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition" required>
                         </div>
                         <div>
-                            <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email Address</label>
-                            <input type="email" id="email" name="email" class="w-full bg-gray-800 border-gray-700 text-white rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition" required>
+                            <label for="email" class="block text-sm font-medium text-gray-300 dark:text-gray-300 text-gray-700 mb-2">Email Address</label>
+                            <input type="email" id="email" name="email" class="w-full bg-gray-800 dark:bg-gray-800 bg-gray-100 border-gray-700 dark:border-gray-700 border-gray-300 text-white dark:text-white text-gray-900 rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition" required>
                         </div>
                     </div>
                     <div class="mb-6">
-                        <label for="date" class="block text-sm font-medium text-gray-300 mb-2">Preferred Date</label>
-                        <input type="date" id="date" name="date" class="w-full bg-gray-800 border-gray-700 text-white rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition" required style="color-scheme: dark;">
+                        <label for="date" class="block text-sm font-medium text-gray-300 dark:text-gray-300 text-gray-700 mb-2">Preferred Date</label>
+                        <input type="date" id="date" name="date" class="w-full bg-gray-800 dark:bg-gray-800 bg-gray-100 border-gray-700 dark:border-gray-700 border-gray-300 text-white dark:text-white text-gray-900 rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition" required style="color-scheme: dark;">
                     </div>
                     <div class="mb-6">
-                        <label for="interest" class="block text-sm font-medium text-gray-300 mb-2">I'm interested in...</label>
-                        <select id="interest" name="interest" class="w-full bg-gray-800 border-gray-700 text-white rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition">
+                        <label for="interest" class="block text-sm font-medium text-gray-300 dark:text-gray-300 text-gray-700 mb-2">I'm interested in...</label>
+                        <select id="interest" name="interest" class="w-full bg-gray-800 dark:bg-gray-800 bg-gray-100 border-gray-700 dark:border-gray-700 border-gray-300 text-white dark:text-white text-gray-900 rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition">
                             <option>Private Suite</option>
                             <option>Dedicated Desk</option>
                             <option>Hot Desk</option>
@@ -241,7 +441,7 @@
                         </select>
                     </div>
                     <div>
-                        <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 rounded-lg transition-transform transform hover:scale-102 text-lg">
+                        <button type="submit" class="w-full bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white font-bold py-4 rounded-lg transition-transform transform hover:scale-102 text-lg neon-border">
                             Request Tour
                         </button>
                     </div>
@@ -252,17 +452,17 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 border-t border-gray-800">
+    <footer class="dark:bg-slate-800/70 bg-slate-100 border-t border-slate-200 dark:border-slate-700">
         <div class="container mx-auto px-6 py-8">
             <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
                 <div class="mb-4 md:mb-0">
-                    <a href="#" class="text-xl font-bold tracking-tighter">VibeHub</a>
-                    <p class="text-gray-400 mt-1">© 2025 VibeHub Inc. All rights reserved.</p>
+                    <a href="#" class="text-xl font-bold tracking-tighter gradient-text">VibeHub</a>
+                    <p class="text-gray-400 dark:text-gray-400 text-gray-600 mt-1">© 2025 VibeHub Inc. All rights reserved.</p>
                 </div>
                 <div class="flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg></a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg></a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.013-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.08 2.525c.636-.247 1.363-.416 2.427.465C9.53 2.013 9.884 2 12.315 2zM12 7a5 5 0 100 10 5 5 0 000-10zm0-2a7 7 0 110 14 7 7 0 010-14zm6.406-1.19a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z" clip-rule="evenodd" /></svg></a>
+                    <a href="#" class="text-gray-400 hover:text-white dark:text-gray-400 dark:hover:text-white text-gray-600 hover:text-gray-900 transition-colors"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg></a>
+                    <a href="#" class="text-gray-400 hover:text-white dark:text-gray-400 dark:hover:text-white text-gray-600 hover:text-gray-900 transition-colors"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg></a>
+                    <a href="#" class="text-gray-400 hover:text-white dark:text-gray-400 dark:hover:text-white text-gray-600 hover:text-gray-900 transition-colors"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.013-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.08 2.525c.636-.247 1.363-.416 2.427.465C9.53 2.013 9.884 2 12.315 2zM12 7a5 5 0 100 10 5 5 0 000-10zm0-2a7 7 0 110 14 7 7 0 010-14zm6.406-1.19a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z" clip-rule="evenodd" /></svg></a>
                 </div>
             </div>
         </div>
@@ -270,6 +470,68 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Load hero widget
+            fetch('hero.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('hero-widget').innerHTML = data;
+                })
+                .catch(error => {
+                    console.error('Error loading hero widget:', error);
+                    // Fallback content if hero.html fails to load
+                    document.getElementById('hero-widget').innerHTML = `
+                        <main class="relative overflow-hidden hero-bg pt-32 pb-20 md:pt-48 md:pb-32 dark:!bg-gray-900 bg-gray-50">
+                            <div class="glow-effect"></div>
+                            <div class="container mx-auto px-6 text-center relative z-10">
+                                <h1 class="text-4xl md:text-6xl lg:text-7xl dark:!text-gray-100 text-gray-500 font-black tracking-tighter mb-4 dark:text-white text-gray-900">
+                                    Where Your Best Work <span class="gradient-text">Happens.</span>
+                                </h1>
+                                <p class="text-lg md:text-xl text-gray-500 dark:!text-gray-400 text-gray-600 max-w-3xl mx-auto mb-8">
+                                    Ditch the coffee shop chaos. VibeHub is the aesthetic, high-tech coworking space designed for creators, freelancers, and startups to connect and innovate.
+                                </p>
+                                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                                    <a href="#tour" class="w-full sm:w-auto bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white font-bold px-8 py-4 rounded-lg transition-transform transform hover:scale-105 text-lg neon-border">
+                                        Book a Tour
+                                    </a>
+                                                    <a href="https://worq.officernd.com/login" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-gray-700 hover:bg-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 bg-gray-200 hover:bg-gray-300 text-white dark:text-white text-gray-900 font-bold px-8 py-4 rounded-lg transition-transform transform hover:scale-105 text-lg">
+                    Community Portal
+                </a>
+                                </div>
+                            </div>
+                        </main>
+                    `;
+                });
+
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            
+            // Check for saved theme preference or default to dark
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            body.className = savedTheme;
+            
+            themeToggle.addEventListener('click', () => {
+                // Add switching animation
+                themeToggle.classList.add('switching');
+                
+                setTimeout(() => {
+                    if (body.classList.contains('dark')) {
+                        body.classList.remove('dark');
+                        body.classList.add('light');
+                        localStorage.setItem('theme', 'light');
+                    } else {
+                        body.classList.remove('light');
+                        body.classList.add('dark');
+                        localStorage.setItem('theme', 'dark');
+                    }
+                    
+                    // Remove animation class after transition
+                    setTimeout(() => {
+                        themeToggle.classList.remove('switching');
+                    }, 600);
+                }, 100);
+            });
+
             // Mobile menu toggle
             const menuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
